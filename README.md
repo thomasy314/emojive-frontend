@@ -4,22 +4,19 @@ The emojive project is a chat room where you can only communicate in emojis. Thi
 
 ### Current state
 
-A basic front-end has been has been created and is able to connect with the backend websocket.
+A basic chat interface has been created that connects to the Emojive backend via WebSocket and restricts all messages to emoji characters only. Users can quickly access emojis through a shortname dropdown menu that appears when typing a colon (:). The emoji can be inserted either by typing another colon or pressing the enter key. The dropdown menu allows navigation through emoji options using the arrow keys.
 
 ### Planned Work
 
 Functionality
 - Add support for identifying who is sending each message
     - Allow users to select an emoji to represent them perhaps?
-- Limit the messages to only allow emojis
-- Create an easy way for people to search for emojis to send
-- Give users a way to either randomly enter a chatroom or enter a session ID
+- Add support for individual chatroom, not just one bit chatroom
+    - Give users a way to either randomly enter a chatroom or enter a session ID
+- Add a library of emojis can search through
 
 Aesthetics
-- Make things look a bit nicer. You know... make it not just black and white
-
-DevOps:
-- create environment variable to differentiate dev and prod stages for websocket endpoints
+- Make things look a bit nicer.
 
 ## Setup
 

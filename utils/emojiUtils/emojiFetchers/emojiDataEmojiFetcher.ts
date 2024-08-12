@@ -3,7 +3,6 @@
     https://github.com/iamcal/emoji-data
 */
 
-import { EMOJI_GLUE_CHARACTER } from "@/utils/emojiUtils/const.emojiFetcher";
 import { EmojiData } from "@/utils/emojiUtils/types.emojiFetcher";
 
 const EMOJI_DATA_URL = "https://raw.githubusercontent.com/iamcal/emoji-data/master/emoji.json";
@@ -14,7 +13,7 @@ function emojiDataEmojiJsonToEmojiDataList(jsonResponse: any[]): EmojiData[] {
         const unicodeCharacter = emojiDatum.unified
             .split("-")
             .map((unicode: string) => String.fromCodePoint(parseInt(unicode, 16)))
-            .join(EMOJI_GLUE_CHARACTER);
+            .join("")
 
         const newData: EmojiData = {
             name: emojiDatum.name.toLowerCase(),

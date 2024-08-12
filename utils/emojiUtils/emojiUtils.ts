@@ -1,5 +1,5 @@
 function hasOnlyEmojis(text: string): boolean {
-    return text.replaceAll(/\p{Extended_Pictographic}/gu, "").length > 0;
+    return /[A-Za-z0-9]/.test(text);
 }
 
 export {

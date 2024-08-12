@@ -7,7 +7,7 @@ type EmojiSearchQuery = {
 }
 
 function doNamesMatch(targetName: string, otherName: string): boolean {
-    return targetName.length > 0 && otherName.startsWith(targetName);
+    return targetName.length > 0 && otherName.includes(targetName);
 }
 
 function emojiDataListSearcher(emojiDataList: EmojiData[], searchInput: EmojiSearchQuery): EmojiData[] {
