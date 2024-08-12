@@ -6,10 +6,22 @@ type EmojiSearchQuery = {
     maxResults: number
 }
 
+/**
+ * Method which compares the input string to a target string to see if they match
+ * @param {string} targetName 
+ * @param {string} otherName 
+ * @returns {boolean}
+ */
 function doNamesMatch(targetName: string, otherName: string): boolean {
     return targetName.length > 0 && otherName.includes(targetName);
 }
 
+/**
+ * Given query parameters, searches a list of EmojiData for any emojis that fit requirements
+ * @param {EmojiData} emojiDataList list of emoji data to search
+ * @param {EmojiSearchQuery} searchInput
+ * @returns 
+ */
 function emojiDataListSearcher(emojiDataList: EmojiData[], searchInput: EmojiSearchQuery): EmojiData[] {
     const { targetName, targetShortName, maxResults } = searchInput;
 

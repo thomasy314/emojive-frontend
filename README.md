@@ -13,10 +13,14 @@ Functionality
     - Allow users to select an emoji to represent them perhaps?
 - Add support for individual chatroom, not just one bit chatroom
     - Give users a way to either randomly enter a chatroom or enter a session ID
-- Add a library of emojis can search through
+- Add a library of emojis users can search through
 
 Aesthetics
 - Make things look a bit nicer.
+
+Security
+- Add users with authentication
+- SSL/HTTPS/WSS
 
 ## Setup
 
@@ -34,6 +38,10 @@ Run developer server with:
 npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+#### Backend Integration
+
+To Test again backend service, you will need to setup the [Emojive Backend](https://github.com/thomasy314/emojive-backend) service and configure your environment variables in the react project to point at it.
 
 ### Production
 

@@ -5,6 +5,16 @@ const GITHUB_UNICODE_REGEX = /unicode\/(.*)\.png/;
 
 const GITHUB_EMOJI_URL = "https://api.github.com/emojis";
 
+/**
+ * Given a json object with emoji metadata from the github API
+ * The data is formatted into a structure that the rest of the Emojive frontend
+ * can use
+ * 
+ * https://docs.github.com/en/rest/emojis/emojis 
+ * 
+ * @param {any[]} jsonResponse response from Github Emoji API.
+ * @returns {EmojiData[]}
+ */
 function githubEmojiJsonToEmojiDataList(jsonResponse: Object): EmojiData[] {
     const emojiData: EmojiData[] = Object.entries(jsonResponse).map(([emojiName, emojiUrl]: [string, string]) => {
 

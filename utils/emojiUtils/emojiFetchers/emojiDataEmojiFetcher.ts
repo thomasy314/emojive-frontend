@@ -7,6 +7,13 @@ import { EmojiData } from "@/utils/emojiUtils/types.emojiFetcher";
 
 const EMOJI_DATA_URL = "https://raw.githubusercontent.com/iamcal/emoji-data/master/emoji.json";
 
+/**
+ * Given a list of data from the Emoji Data github repo
+ * The data is formatted into a structure that the rest of the Emojive frontend
+ * can use
+ * @param {any[]} jsonResponse response from Emoji Data github repo.
+ * @returns {EmojiData[]}
+ */
 function emojiDataEmojiJsonToEmojiDataList(jsonResponse: any[]): EmojiData[] {
     const emojiData: EmojiData[] = jsonResponse.map((emojiDatum: any) => {
 
