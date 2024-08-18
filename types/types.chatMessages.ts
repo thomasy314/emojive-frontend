@@ -6,6 +6,7 @@ type IncomingChatMessage = {
 
 type OutgoingChatMessage = {
     message: string,
+    clientId: string
 }
 
 export type {

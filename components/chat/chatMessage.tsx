@@ -1,14 +1,16 @@
+import { IncomingChatMessage } from "../../types/types.chatMessages";
+
 type ChatMessageProps = {
-    messages: string[]
+    messageData: IncomingChatMessage[]
 }
 
 /**
  * Formats and prints chat messages
  */
-function ChatMessageDisplay({ messages }: ChatMessageProps) {
+function ChatMessageDisplay({ messageData }: ChatMessageProps) {
 
-    const messagesJSX = messages.map((text, index) => {
-        return <p key={index}>{text}</p>
+    const messagesJSX = messageData.map((data, index) => {
+        return <p key={index}>{data.clientId}: {data.message}</p>
     });
 
     return (

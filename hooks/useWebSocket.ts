@@ -41,7 +41,8 @@ function useWebSocket(url: string, { clientId }: UseWebSocketProps) {
      */
     function sendChatMessage(messageText: string) {
         const message: OutgoingChatMessage = {
-            message: messageText
+            message: messageText,
+            clientId: clientId
         }
 
         sendMessage(JSON.stringify(message));

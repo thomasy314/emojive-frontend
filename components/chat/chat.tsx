@@ -4,6 +4,7 @@ import backendConfig from "@/config/backend.config";
 import useWebSocket from "@/hooks/useWebSocket";
 import { hasOnlyEmojis } from "@/utils/emojiUtils/emojiUtils";
 import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
+import { IncomingChatMessage } from "../../types/types.chatMessages";
 import ChatBanner from "./chatBanner";
 import ChatMessageDisplay from "./chatMessage";
 
@@ -19,7 +20,7 @@ function Chat({ clientId }: ChatProps) {
     const { ws, sendChatMessage } = useWebSocket(backendConfig.WEBSOCKET_ENDPOINT, { clientId });
 
     const [chatInput, setChatInput] = useState<string>("");
-    const [chatMessages, setChatMessages] = useState<string[]>([])
+    const [chatMessages, setChatMessages] = useState<IncomingChatMessage[]>([])
     const [showOnlyEmojiWarning, setShowOnlyEmojiWarning] = useState<boolean>(false);
     const formRef = useRef<HTMLFormElement>(null);
 
@@ -27,9 +28,9 @@ function Chat({ clientId }: ChatProps) {
         if (!ws.current) return;
 
         ws.current.onmessage = (message) => {
+            const messageData: IncomingChatMessage = JSON.parse(message.data);
             setChatMessages(oldMessages => {
-                const messageText = JSON.parse(message.data).message;
-                return [messageText, ...oldMessages]
+                return [messageData, ...oldMessages]
             })
         }
     }, [ws])
@@ -78,7 +79,7 @@ function Chat({ clientId }: ChatProps) {
     return (
         <div className="flex flex-col text-center justify-center items-center m-3 w-96 max-w-[90%]">
             <ChatBanner showBanner={showOnlyEmojiWarning} message="Please ensure you only have emojis in your text before you send!" />
-            <ChatMessageDisplay messages={chatMessages} />
+            <ChatMessageDisplay messageData={chatMessages} />
             <form className="flex flex-col items-center" ref={formRef} onSubmit={handlerOnSubmit}>
                 <EmojiTextArea
                     onKeyDown={handleTextAreaSubmit}
