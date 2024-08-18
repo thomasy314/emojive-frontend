@@ -1,4 +1,4 @@
-import { EmojiData } from "@/types/types.emojiFetcher";
+import { EmojiData } from "@/types/types.emojis";
 import { EMOJI_DATA_URL, emojiDataEmojiJsonToEmojiDataList } from "@/utils/emojiUtils/emojiFetchers/emojiDataEmojiFetcher";
 import { loadEmojiDataFromURL } from "@/utils/emojiUtils/emojiFetchers/emojiFetcher";
 import { emojiDataListSearcher } from "@/utils/emojiUtils/emojiSearchers/emojiSearch";
