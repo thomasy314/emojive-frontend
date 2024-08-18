@@ -1,4 +1,4 @@
-import { EmojiData } from "@/utils/emojiUtils/types.emojiFetcher";
+import { EmojiData } from "@/types/types.emojiFetcher";
 
 type EmojiSearchQuery = {
     targetName: string,

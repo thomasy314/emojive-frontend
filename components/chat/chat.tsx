@@ -1,17 +1,22 @@
 "use client"
 import EmojiTextArea from "@/components/emojiTextArea";
+import backendConfig from "@/config/backend.config";
 import useWebSocket from "@/hooks/useWebSocket";
 import { hasOnlyEmojis } from "@/utils/emojiUtils/emojiUtils";
 import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import ChatBanner from "./chatBanner";
 import ChatMessageDisplay from "./chatMessage";
 
+type ChatProps = {
+    clientId: string
+}
+
 /**
  * Chat component which can connect to a websocket connection, send messages, and show the chatroom messages
  */
-function Chat() {
+function Chat({ clientId }: ChatProps) {
 
-    const { ws, sendMessage } = useWebSocket();
+    const { ws, sendChatMessage } = useWebSocket(backendConfig.WEBSOCKET_ENDPOINT, { clientId });
 
     const [chatInput, setChatInput] = useState<string>("");
     const [chatMessages, setChatMessages] = useState<string[]>([])
@@ -52,7 +57,7 @@ function Chat() {
      */
     function sendChat(message: string): boolean {
         if (hasOnlyEmojis(message)) {
-            sendMessage(message);
+            sendChatMessage(message)
             return true;
         } else {
             return false;

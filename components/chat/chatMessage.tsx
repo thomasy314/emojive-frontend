@@ -6,6 +6,7 @@ type ChatMessageProps = {
  * Formats and prints chat messages
  */
 function ChatMessageDisplay({ messages }: ChatMessageProps) {
+
     const messagesJSX = messages.map((text, index) => {
         return <p key={index}>{text}</p>
     });

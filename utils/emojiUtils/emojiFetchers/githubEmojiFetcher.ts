@@ -1,5 +1,5 @@
-import { EMOJI_GLUE_CHARACTER } from "@/utils/emojiUtils/const.emojiFetcher";
-import { EmojiData } from "@/utils/emojiUtils/types.emojiFetcher";
+import { EMOJI_GLUE_CHARACTER } from "@/utils/emojiUtils/emojiFetchers/const.emojiFetcher";
+import { EmojiData } from "./types.emojiFetcher";
 
 const GITHUB_UNICODE_REGEX = /unicode\/(.*)\.png/;
 

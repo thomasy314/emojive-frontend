@@ -3,7 +3,7 @@
     https://github.com/iamcal/emoji-data
 */
 
-import { EmojiData } from "@/utils/emojiUtils/types.emojiFetcher";
+import { EmojiData } from "@/types/types.emojiFetcher";
 
 const EMOJI_DATA_URL = "https://raw.githubusercontent.com/iamcal/emoji-data/master/emoji.json";
 
