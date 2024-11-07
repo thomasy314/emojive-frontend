@@ -22,5 +22,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          target: test
+          target: build
           load: true
