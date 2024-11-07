@@ -12,10 +12,16 @@ export default defineConfig({
     react(), // Add React support
   ],
 
+  preview: {
+    port: 3000,
+    strictPort: true,
+  },
+
   // Development server configuration
   server: {
     port: 3000,
-    open: true, // Open browser on server start
+    strictPort: true,
+    host: true,
     cors: true, // Enable CORS
     proxy: {
       // Configure proxy if needed

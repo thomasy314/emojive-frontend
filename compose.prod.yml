@@ -1,0 +1,6 @@
+services:
+  emojive-console:
+    container_name: emojive-console
+    build:
+      context: .
+      target: production

@@ -1,0 +1,8 @@
+services:
+  emojive-console:
+    container_name: emojive-console
+    environment:
+      - NODE_ENV=production
+      - PORT=${PORT}
+    ports:
+      - ${PORT}:${PORT}
