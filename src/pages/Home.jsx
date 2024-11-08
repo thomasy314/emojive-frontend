@@ -39,7 +39,7 @@ function Home() {
         onChange={handleUserNameInputChange}
         placeholder="👤"
       />
-      <button className="border rounded mt-10 p-2" onClick={handleCreateUser}>
+      <button className="border rounded m-10 p-2" onClick={handleCreateUser}>
         👉
       </button>
     </CenteredContainer>
