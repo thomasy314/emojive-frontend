@@ -1,9 +1,10 @@
 import CenteredContainer from "@commonComponents/CenteredContainer";
+import TextInput from "@commonComponents/TextInput";
 import useUsers from "@hooks/emojive/useUsers";
-import useLocalStorage from "@hooks/useLocalStorage";
 import * as emoji from "node-emoji";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "usehooks-ts";
 
 function Home() {
   const { createUser } = useUsers();
@@ -33,14 +34,13 @@ function Home() {
   return (
     <CenteredContainer>
       <h1 className="text-4xl">👋</h1>
-      <input
-        className="border rounded mt-10 placeholder:text-center placeholder:opacity-30 text-center text-xl"
+      <TextInput
         value={userNameInput}
         onChange={handleUserNameInputChange}
         placeholder="👤"
       />
       <button className="border rounded mt-10 p-2" onClick={handleCreateUser}>
-        📤
+        👉
       </button>
     </CenteredContainer>
   );
