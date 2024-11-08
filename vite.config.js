@@ -23,14 +23,6 @@ export default defineConfig({
     strictPort: true,
     host: true,
     cors: true, // Enable CORS
-    proxy: {
-      // Configure proxy if needed
-      "/api": {
-        target: "http://localhost:8080",
-        changeOrigin: true,
-        secure: false,
-      },
-    },
   },
 
   // Build configuration
@@ -45,7 +37,11 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
       "@components": path.resolve(__dirname, "./src/components"),
+      "@commonComponents": path.resolve(__dirname, "./src/commonComponents"),
       "@assets": path.resolve(__dirname, "./src/assets"),
+      "@hooks": path.resolve(__dirname, "./src/hooks"),
+      "@config": path.resolve(__dirname, "./src/config"),
+      "@pages": path.resolve(__dirname, "./src/pages"),
     },
   },
 
