@@ -1,4 +1,4 @@
-import PrivateRoute from "@commonComponents/PrivateRoute";
+import PrivateRoute from "@components/PrivateRoute";
 import Home from "@pages/Home";
 import Lobby from "@pages/Lobby";
 import { createBrowserRouter } from "react-router-dom";
