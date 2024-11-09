@@ -1,10 +1,10 @@
+import TextInput from "@commonComponents/TextInput";
 import { backendWsUrl } from "@config/backend.config";
 import useWebSocket from "@hooks/useWebSocket";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { createSearchParams } from "react-router-dom";
 import { useLocalStorage } from "usehooks-ts";
 import ChatDisplay from "./ChatDisplay";
-import ChatInput from "./ChatInput";
 
 function reducer(messages, action) {
   switch (action.type) {
@@ -17,14 +17,14 @@ function reducer(messages, action) {
 
 function Chat({ chatroomUUID }) {
   const [userSession] = useLocalStorage("userSession", null);
-
   const [messages, dispatch] = useReducer(reducer, []);
+  const [messageInput, setMessageInput] = useState("");
 
   const chatroomParams = createSearchParams({
     chatroomUUID: chatroomUUID,
   }).toString();
 
-  const { ws } = useWebSocket(
+  const { ws, sendChatMessage } = useWebSocket(
     `${backendWsUrl}/chatroom?${chatroomParams}`,
     userSession.userUUID
   );
@@ -38,12 +38,20 @@ function Chat({ chatroomUUID }) {
     };
   }, [ws]);
 
+  const handleSendMessage = () => {
+    sendChatMessage(messageInput);
+  };
+
   return (
     <div className="border rounded inline-block p-10">
       <div className="flex flex-col items-center">
         <h1>Chat</h1>
         <ChatDisplay messages={messages} />
-        <ChatInput />
+        <TextInput
+          value={messageInput}
+          onChange={(event) => setMessageInput(event.target.value)}
+        />
+        <button onClick={handleSendMessage}>📤</button>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ function useUsers() {
       })
       .then((response) => response.data)
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
 
     return newUserData;
