@@ -27,7 +27,7 @@ function useWebSocket(url, authToken) {
   }
 
   return {
-    ws: ws.current,
+    ws,
     sendMessage,
     sendChatMessage,
   };

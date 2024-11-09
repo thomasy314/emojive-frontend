@@ -1,25 +1,14 @@
-import { backendWsUrl } from "@config/backend.config";
-import useWebSocket from "@hooks/useWebSocket";
-import { createSearchParams, useSearchParams } from "react-router-dom";
-import { useLocalStorage } from "usehooks-ts";
+import CenteredContainer from "@commonComponents/CenteredContainer";
+import Chat from "@components/Chat";
+import { useSearchParams } from "react-router-dom";
 
 function Chatroom() {
-  const [userSession] = useLocalStorage("userSession", null);
   const [URLSearchParams] = useSearchParams();
 
-  const chatroomParams = createSearchParams({
-    chatroomUUID: URLSearchParams.get("chatroomUUID"),
-  }).toString();
-
-  useWebSocket(
-    `${backendWsUrl}/chatroom?${chatroomParams}`,
-    userSession.userUUID
-  );
-
   return (
-    <div>
-      <h1>Chatroom</h1>
-    </div>
+    <CenteredContainer>
+      <Chat chatroomUUID={URLSearchParams.get("chatroomUUID")} />
+    </CenteredContainer>
   );
 }
 
