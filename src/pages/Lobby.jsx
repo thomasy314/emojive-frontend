@@ -9,9 +9,6 @@ function Lobby() {
   const navigate = useNavigate();
 
   const handleJoinChatroom = () => {
-    console.log(
-      createSearchParams({ chatroomUUID: joinSpecificRoomInput }).toString()
-    );
     navigate({
       pathname: "/chatroom",
       search: createSearchParams({
