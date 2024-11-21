@@ -1,13 +1,12 @@
 import CenteredContainer from "@commonComponents/CenteredContainer";
-import TextInput from "@commonComponents/TextInput";
-import useUsers from "@hooks/emojive/useUsers";
-import * as emoji from "node-emoji";
+import EmojiTextInput from "@components/EmojiTextInput";
+import useEmojive from "@hooks/useEmojive";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "usehooks-ts";
 
 function Home() {
-  const { createUser } = useUsers();
+  const { createUser } = useEmojive();
   const [userNameInput, setUserNameInput] = useState("");
   const [userSession, setUserSession] = useLocalStorage("userSession", null);
   const navigate = useNavigate();
@@ -18,14 +17,6 @@ function Home() {
     }
   }, [navigate, userSession]);
 
-  const handleUserNameInputChange = (event) => {
-    const newVal = event.target.value;
-    if (emoji.strip(newVal).length) {
-      return;
-    }
-    setUserNameInput(newVal);
-  };
-
   const handleCreateUser = async () => {
     const newUserData = await createUser(userNameInput, ["en"], "US");
     setUserSession(newUserData);
@@ -34,9 +25,9 @@ function Home() {
   return (
     <CenteredContainer>
       <h1 className="text-4xl">👋</h1>
-      <TextInput
+      <EmojiTextInput
         value={userNameInput}
-        onChange={handleUserNameInputChange}
+        onChange={setUserNameInput}
         placeholder="👤"
       />
       <button className="border rounded m-10 p-2" onClick={handleCreateUser}>
