@@ -4,5 +4,6 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=${PORT}
+      - VITE_PORT=${PORT}
     ports:
       - ${PORT}:${PORT}

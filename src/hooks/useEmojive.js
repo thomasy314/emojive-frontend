@@ -1,6 +1,6 @@
 import emojiveBackend from "@config/axios.config";
 
-function useUsers() {
+function useEmojive() {
   async function createUser(userName, languages, countryCode) {
     const newUserData = await emojiveBackend
       .post("/user/create", {
@@ -16,7 +16,9 @@ function useUsers() {
     return newUserData;
   }
 
-  return { createUser };
+  return {
+    createUser,
+  };
 }
 
-export default useUsers;
+export default useEmojive;

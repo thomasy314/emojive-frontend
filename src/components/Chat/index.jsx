@@ -1,45 +1,38 @@
-import TextInput from "@commonComponents/TextInput";
+import EmojiTextInput from "@components/EmojiTextInput";
 import { backendWsUrl } from "@config/backend.config";
 import useWebSocket from "@hooks/useWebSocket";
-import { useEffect, useReducer, useState } from "react";
-import { createSearchParams } from "react-router-dom";
+import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import ChatDisplay from "./ChatDisplay";
 
-function reducer(messages, action) {
-  switch (action.type) {
-    case "ADD_MESSAGE":
-      return [...messages, action.payload];
-    default:
-      return messages;
-  }
-}
-
 function Chat({ chatroomUUID }) {
   const [userSession] = useLocalStorage("userSession", null);
-  const [messages, dispatch] = useReducer(reducer, []);
+  const [messages, setMessages] = useLocalStorage(
+    `chatroom:messages:${chatroomUUID}`,
+    []
+  );
   const [messageInput, setMessageInput] = useState("");
 
-  const chatroomParams = createSearchParams({
-    chatroomUUID: chatroomUUID,
-  }).toString();
+  const subProtocols = ["Authorization", `Token%20${userSession.userUUID}`];
 
-  const { ws, sendChatMessage } = useWebSocket(
-    `${backendWsUrl}/chatroom?${chatroomParams}`,
-    userSession.userUUID
-  );
+  const onMessage = (event) => {
+    const message = JSON.parse(event.data);
+    console.log("received message", message);
+    setMessages((oldMessages) => [...oldMessages, message]);
+  };
 
-  useEffect(() => {
-    if (!ws) return;
-
-    ws.current.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      dispatch({ type: "ADD_MESSAGE", payload: message });
-    };
-  }, [ws]);
+  const { sendMessage } = useWebSocket(`${backendWsUrl}/chatroom`, {
+    subProtocols,
+    onMessage,
+  });
 
   const handleSendMessage = () => {
-    sendChatMessage(messageInput);
+    const message = {
+      messageType: "chat",
+      messageText: messageInput,
+    };
+
+    sendMessage(JSON.stringify(message));
   };
 
   return (
@@ -47,7 +40,7 @@ function Chat({ chatroomUUID }) {
       <div className="flex flex-col items-center">
         <h1>Chat</h1>
         <ChatDisplay messages={messages} />
-        <TextInput
+        <EmojiTextInput
           value={messageInput}
           onChange={(event) => setMessageInput(event.target.value)}
         />
